@@ -11,8 +11,6 @@ if $setup_vim ; then
 fi
 
 if $setup_zsh ; then
-    cp .zshrc ~/.zshrc
-
     # Checking if oh-my-zsh is installed.
     if [[ test -d ~/.oh-my-zsh ]] ; then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
