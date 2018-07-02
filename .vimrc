@@ -52,3 +52,6 @@ augroup AutoSaveFolds
   autocmd BufWinLeave ?* mkview
   autocmd BufWinEnter ?* silent loadview
 augroup END
+
+" Better backspace
+set backspace=indent,eol,start
