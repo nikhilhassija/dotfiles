@@ -1,0 +1,12 @@
+alias sl='ls'
+alias gca='git add -A; git commit -m $1'
+alias mysql='mysql -p'
+alias xo='xdg-open'
+alias clean='indent -linux'
+alias venv='source .env/bin/activate'
+alias git-root='cd $(git rev-parse --show-toplevel)'
+alias tmux='tmux -2'
+alias dl="cd ~/Downloads"
+alias dk="cd ~/Desktop"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
