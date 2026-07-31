@@ -1,0 +1,24 @@
+[user]
+    name = Nikhil
+    email = nikhil.hassija@gmail.com
+
+[core]
+    editor = nvim
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+[rerere]
+    enabled = true
+
+[merge]
+    conflictstyle = zdiff3

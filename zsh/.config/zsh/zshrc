@@ -1,0 +1,17 @@
+# Environment
+source ~/.config/zsh/exports.zsh
+
+# History
+source ~/.config/zsh/history.zsh
+
+# Plugins
+source ~/.config/zsh/plugins.zsh
+
+# Functions
+source ~/.config/zsh/functions.zsh
+
+# Aliases
+source ~/.config/zsh/aliases.zsh
+
+# Prompt
+eval "$(starship init zsh)"
