@@ -23,3 +23,8 @@ bindkey '^[[B' down-line-or-beginning-search
 
 # Expand history references when pressing Space
 bindkey ' ' magic-space
+
+# Edit the current command line in $EDITOR from vi insert mode
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^X^E' edit-command-line
