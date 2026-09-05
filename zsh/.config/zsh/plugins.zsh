@@ -28,3 +28,6 @@ bindkey ' ' magic-space
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M viins '^X^E' edit-command-line
+
+# Move to the absolute beginning of the command line in vi insert mode
+bindkey -M viins '^A' beginning-of-line
