@@ -21,6 +21,8 @@ readonly REQUIRED_COMMANDS=(
     nvim
     starship
     sheldon
+    eza
+    fzf
 )
 
 readonly PACKAGES=(
@@ -33,6 +35,7 @@ readonly PACKAGES=(
 )
 
 readonly TPM_DIR="$HOME/.tmux/plugins/tpm"
+readonly TARGET_DIR="$HOME"
 
 ################################################################################
 # Colours
@@ -99,7 +102,7 @@ check_stow_conflicts() {
     local conflicts=()
 
     for package in "${PACKAGES[@]}"; do
-        if output=$(stow --simulate "$package" 2>&1); then
+        if output=$(stow --target="$TARGET_DIR" --simulate "$package" 2>&1); then
             success "$package"
         else
             error "$package"
@@ -123,7 +126,7 @@ install_dotfiles() {
     info "Installing dotfiles"
 
     for package in "${PACKAGES[@]}"; do
-        stow --restow "$package"
+        stow --target="$TARGET_DIR" --restow "$package"
         success "$package"
     done
 }
@@ -177,6 +180,13 @@ main() {
 
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     cd "$script_dir"
+
+    # Ensure Homebrew is on PATH on macOS if not yet configured in the current shell
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
 
     check_dependencies
     check_stow_conflicts

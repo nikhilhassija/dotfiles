@@ -36,6 +36,8 @@ Install the following tools before running the installer:
 - Neovim
 - Starship
 - Sheldon
+- eza
+- fzf
 
 ## Installation
 
