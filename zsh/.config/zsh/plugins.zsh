@@ -1,3 +1,6 @@
+# Use vi keybindings
+bindkey -v
+
 # Initialize Zsh's completion system
 autoload -Uz compinit
 compinit
@@ -36,5 +39,6 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M viins '^X^E' edit-command-line
 
-# Move to the absolute beginning of the command line in vi insert mode
+# Move to the beginning and end of the command line in vi insert mode
 bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
