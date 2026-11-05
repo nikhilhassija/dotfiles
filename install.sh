@@ -36,6 +36,8 @@ readonly PACKAGES=(
 
 readonly TPM_DIR="$HOME/.tmux/plugins/tpm"
 readonly TARGET_DIR="$HOME"
+readonly FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.tar.xz"
+readonly FONT_CHECK_FILE="SauceCodeProNerdFontMono-Regular.ttf"
 
 ################################################################################
 # Colours
@@ -152,6 +154,38 @@ sync_sheldon() {
     success "Sheldon plugins synchronized"
 }
 
+install_fonts() {
+    info "Checking SauceCodePro Nerd Font Mono"
+
+    local font_dir
+    if [[ "$OSTYPE" == darwin* ]]; then
+        font_dir="$HOME/Library/Fonts"
+    else
+        font_dir="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"
+    fi
+
+    if [[ -f "$font_dir/$FONT_CHECK_FILE" ]]; then
+        success "SauceCodePro Nerd Font Mono already installed"
+        return
+    fi
+
+    mkdir -p "$font_dir"
+
+    local tmp_dir
+    tmp_dir="$(mktemp -d)"
+
+    curl -fsSL "$FONT_URL" -o "$tmp_dir/SourceCodePro.tar.xz"
+    tar -xf "$tmp_dir/SourceCodePro.tar.xz" -C "$tmp_dir"
+    cp "$tmp_dir"/SauceCodeProNerdFontMono-*.ttf "$font_dir"/
+    rm -rf "$tmp_dir"
+
+    if [[ "$OSTYPE" != darwin* ]] && command -v fc-cache >/dev/null 2>&1; then
+        fc-cache -f "$font_dir" >/dev/null
+    fi
+
+    success "Installed SauceCodePro Nerd Font Mono"
+}
+
 finish() {
     info "Installation complete"
 
@@ -193,6 +227,7 @@ main() {
     install_dotfiles
     install_tpm
     sync_sheldon
+    install_fonts
     finish
 }
 
